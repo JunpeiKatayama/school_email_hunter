@@ -37,3 +37,7 @@ $ python3 get.py
 
 出力結果は `list.csv` に保存される  
 途中で止めたい時は `Ctrl + C`
+
+# 懸念
+
+chromedriver 古くなると動かないのでダウンロードしてくる必要あり
