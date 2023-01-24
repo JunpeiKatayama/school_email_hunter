@@ -11,10 +11,10 @@ driver = webdriver.Chrome('./chromedriver.exe', options=options)  # Optional arg
 now = datetime.datetime.now()
 file = open("list" + str(now) + ".csv", "w")
 # csv のヘッダ行を入力
-file.write("No,Name,Bundesland,Schultyp,E-Mail\n")
+file.write("No,Name,Bundesland,Schultyp,E-Mail,URL\n")
 
 # 一応確認したが、40000 までは学校のデータが存在した。
-# 50000回のループとし、記入すべきデータが見つからない場合ストップすることに。
+# 50000回のループとし、記入すべきデータが見つからない場合に備えて URL を出力に追加。
 for i in range(50000):
 	page_no = str(i + 1).zfill(5)
 	url = "http://www.schulliste.eu/schule/" + page_no + "-freie-montessori-schule-mkk/"
@@ -55,11 +55,8 @@ for i in range(50000):
 		# メールアドレスが見つからなかったら空
 		email = ""
 	
-	# 記入すべき情報が何も取れなかった場合ループを抜ける
-	if not name and not state and not classification and not email:
-		break
-	
-	file.write(str(no) + "," + name + "," + state + "," + classification + "," + email + "\n")
+	file.write(f'{str(no)},"{name}","{state}","{classification}","{email}","{url}"' + "\n")
+	print(str(no))
 
 driver.quit()
 file.close()
