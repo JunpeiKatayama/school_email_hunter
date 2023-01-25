@@ -25,7 +25,7 @@ $ pip3 install selenium
 - 実行
 
 ```
-$ python3 get.py
+$ python3 main.py
 ```
 
 下記のような出力が出るが気にしなくて OK
@@ -35,7 +35,7 @@ $ python3 get.py
   driver = webdriver.Chrome('./chromedriver.exe', options=options)  # Optional argument, if not specified will search path.
 ```
 
-出力結果は `list.csv` に保存される  
+出力結果は `exports` 下に保存される  
 途中で止めたい時は `Ctrl + C`
 
 # 懸念
