@@ -40,7 +40,8 @@ class SiteScraper:
 
         driver.get(url)
         try:
-            element = driver.find_element(By.XPATH, "//div[@data-content-feature='1']").text
+            # 取得範囲は検索結果の全体
+            element = driver.find_element(By.XPATH, "//div[@class='GyAeWb']").text
         except NoSuchElementException:
             # 検索結果が1件もない場合
             return ""
