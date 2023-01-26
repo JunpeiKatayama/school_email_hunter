@@ -17,6 +17,7 @@ file = open("./exports/list" + str(now) + ".csv", "w")
 # csv のヘッダ行を入力
 file.write("No,Name,Bundesland,Schultyp,E-Mail,URL,URL(Google)\n")
 
+no = 0
 site_scraper = SiteScraper()
 # 一応確認したが、40000 までは学校のデータが存在した。
 # 50000回のループとし、記入すべきデータが見つからない場合に備えて URL を出力に追加。
@@ -25,8 +26,12 @@ for i in range(50000):
 	url = "http://www.schulliste.eu/schule/" + page_no + "-freie-montessori-schule-mkk/"
 	driver.get(url)
 
+	# 小学校のデータではない場合、次のループへ
+	if site_scraper.is_elemental_school(driver) is False:
+		continue
+	
 	# No
-	no = i + 1
+	no += 1
 
 	# Name
 	name_xpath = "//p[@class='map_title red']"

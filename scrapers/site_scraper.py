@@ -7,6 +7,25 @@ from enums.where import Where
 class SiteScraper:
 
     @staticmethod
+    def is_elemental_school(driver):
+        """渡されたページ情報から、そのページが小学校のものかどうかを判定する
+        
+        Keyword arguments:
+        driver -- celenium の webdriver
+        """
+        try:
+            elements = driver.find_elements(By.XPATH, "//a[contains(@title, 'Zu Schulen im Fachbereich übergehen')]")
+            for element in elements:
+                # 取得した要素に Grund が含まれる文字列があれば true
+                if "Grund" in element.text:
+                    return True
+        except NoSuchElementException:
+            # そもそもカテゴリが見つからない場合
+            return False
+        return False
+        
+
+    @staticmethod
     def get_data_by_xpath(driver, xpath, where, attribute_name):
         """データを xpath を用いて取得し、返却する
         
@@ -37,7 +56,6 @@ class SiteScraper:
         driver -- celenium の webdriver
         url -- 検索用 URL
         """
-
         driver.get(url)
         try:
             # 取得範囲は検索結果の全体
