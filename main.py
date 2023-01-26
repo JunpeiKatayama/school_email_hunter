@@ -5,17 +5,19 @@ from selenium import webdriver
 from enums.where import Where
 from scrapers.site_scraper import SiteScraper
 
-options = webdriver.ChromeOptions()
 # chromedriver はバックグラウンドで起動
+options = webdriver.ChromeOptions()
 options.add_argument('--headless')
 driver = webdriver.Chrome('./chromedriver.exe', options=options)  # Optional argument, if not specified will search path.
-site_scraper = SiteScraper()
+
 # ファイル名設定
 now = datetime.datetime.now()
 file = open("./exports/list" + str(now) + ".csv", "w")
+
 # csv のヘッダ行を入力
 file.write("No,Name,Bundesland,Schultyp,E-Mail,URL,URL(Google)\n")
 
+site_scraper = SiteScraper()
 # 一応確認したが、40000 までは学校のデータが存在した。
 # 50000回のループとし、記入すべきデータが見つからない場合に備えて URL を出力に追加。
 for i in range(50000):
@@ -25,6 +27,7 @@ for i in range(50000):
 
 	# No
 	no = i + 1
+
 	# Name
 	name_xpath = "//p[@class='map_title red']"
 	name = site_scraper.get_data_by_xpath(driver, name_xpath, Where.TEXT, None)	

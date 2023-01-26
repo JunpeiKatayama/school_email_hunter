@@ -46,7 +46,7 @@ class SiteScraper:
             # 検索結果が1件もない場合
             return ""
         # hogehoge@test.com. のように末尾に dot がつく場合がそこそこあるので末尾は必ず英数字とする正規表現
-        pattern = re.compile(r"[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+[a-zA-Z0-9]");
+        pattern = re.compile(r"([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+[a-zA-Z0-9])");
         result = re.search(pattern, element)
         if result is None:
             # 検索結果の1件目にメールアドレスの記載がない場合
