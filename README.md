@@ -14,10 +14,13 @@ $ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 $ python3 get-pip.py
 ```
 
-- celenium をインストール
+- ライブラリ をインストール
 
 ```
-$ pip3 install selenium
+$ pip3 install requests
+$ pip3 install lxml
+$ pip3 install tqdm
+$ pip3 install numpy
 ```
 
 # 使い方
@@ -28,16 +31,10 @@ $ pip3 install selenium
 $ python3 main.py
 ```
 
-下記のような出力が出るが気にしなくて OK
-
-```
-/usr/xxx/xxx/scrapingByPython/get.py:10: DeprecationWarning: executable_path has been deprecated, please pass in a Service object
-  driver = webdriver.Chrome('./chromedriver.exe', options=options)  # Optional argument, if not specified will search path.
-```
-
 出力結果は `exports` 下に保存される  
 途中で止めたい時は `Ctrl + C`
 
-# 懸念
+# 注意
 
-chromedriver 古くなると動かないのでダウンロードしてくる必要あり
+google_search_url が入っている場合、「google 検索結果全体から最初にマッチしたメールアドレス」を入れているだけなので、
+メールアドレスが正しいかどうか疑った方が良い。特にドメインがおかしい場合など。
