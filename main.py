@@ -1,5 +1,7 @@
 import datetime
 import re
+import tqdｍ
+import numpy as np
 
 import requests
 import lxml.html
@@ -19,7 +21,11 @@ no = 0
 site_scraper = SiteScraper()
 # 一応確認したが、40000 までは学校のデータが存在した。
 # 50000回のループとし、記入すべきデータが見つからない場合に備えて URL を出力に追加。
-for i in range(50000):
+for i in tqdm.tqdm(range(50000)):
+	# ループの進捗状況を出力
+	np.pi*np.pi
+
+	# 今回アクセスする url を作る
 	page_no = str(i + 1).zfill(5)
 	url = "http://www.schulliste.eu/schule/" + page_no + "-freie-montessori-schule-mkk/"
 	

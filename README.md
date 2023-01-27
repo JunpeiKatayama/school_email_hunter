@@ -20,6 +20,7 @@ $ python3 get-pip.py
 $ pip3 install requests
 $ pip3 install lxml
 $ pip3 install tqdm
+$ pip3 install numpy
 ```
 
 # 使い方
