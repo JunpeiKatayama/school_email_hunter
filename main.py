@@ -80,15 +80,16 @@ for i in tqdm.tqdm(range(50000)):
 			email = ""
 		else:
 			email = result.group()
+		google_search_url_for_export = f'https://www.google.com/search?q={formatted_name}+%22e-mail%22'
 	else:
 		# google 検索しない場合は空
 		# このカラムにデータがある場合、メールアドレスが正確か疑った方が良い
-		google_search_url = ""
+		google_search_url_for_export = ""
 	
 	# このデータに採番される No
 	no += 1
 
 	# ファイル書き込み
-	file.write(f'{str(no)},"{name}","{state}","{classification}","{email.replace(" ", "")}","{url}","{google_search_url}"' + "\n")
+	file.write(f'{str(no)},"{name}","{state}","{classification}","{email.replace(" ", "")}","{url}","{google_search_url_for_export}"' + "\n")
 
 file.close()
