@@ -89,6 +89,6 @@ for i in tqdm.tqdm(range(50000)):
 	no += 1
 
 	# ファイル書き込み
-	file.write(f'{str(no)},"{name}","{state}","{classification}","{email}","{url}","{google_search_url}"' + "\n")
+	file.write(f'{str(no)},"{name}","{state}","{classification}","{email.replace(" ", "")}","{url}","{google_search_url}"' + "\n")
 
 file.close()
