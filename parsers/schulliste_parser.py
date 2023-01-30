@@ -1,6 +1,6 @@
 from enums.where import Where
 
-class SiteScraper:
+class SchullisteParser:
 
     @staticmethod
     def is_elemental_school(html):
