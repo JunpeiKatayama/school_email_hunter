@@ -68,11 +68,14 @@ for i in tqdm.tqdm(range(50000)):
 		# "email" ダブルクオートで囲むことで検索精度を上げることができる
 		search_words = [name, "\"e-mail\""];
 		google_search_response = GoogleSearchScraper.scrape(search_words);
-		# google 検索でも見つからなかった場合 email = ""
-		email = GoogleSearchResponseParser.parse(Patterns.EMAIL.value, google_search_response).group() or "";
+		result = GoogleSearchResponseParser.parse(Patterns.EMAIL.value, google_search_response);
+		if result is not None:
+			# メールアドレスが見つかった場合
+			email = result.group();
+		# URL(Google)
 		google_search_url_for_export = google_search_response.url;
 	else:
-		# google 検索しない場合は空
+		# URL(Google) google 検索しない場合は空
 		google_search_url_for_export = ""
 	
 	# このデータに採番される No
